@@ -1,13 +1,4 @@
 
-function requireIfAvailable (path) {
-  try {
-      return require(path);
-  } catch (e) {
-      return false;
-  }
-}
-
-const AsyncStorage = (requireIfAvailable('@react-native-async-storage/async-storage') || requireIfAvailable('@react-native-community/async-storage') || requireIfAvailable('react-native')).AsyncStorage
 
 function callFallbackIfFunc(fallback, callback){
   if(typeof fallback === 'function'){
@@ -17,7 +8,7 @@ function callFallbackIfFunc(fallback, callback){
   return callback(fallback)
 }
 
-module.exports = exports = function(fallback){
+module.exports = exports = function(fallback, AsyncStorage = null){
   return {
     type: 'languageDetector',
     async: true,
